@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BlogContext } from '../context/BlogContext';
+import { BlogContext } from '../context/BlogContext.jsx';
 
 function Home() {
   const { blogs } = useContext(BlogContext);

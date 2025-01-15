@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import BlogDetails from './pages/BlogDetails';
 import CreateBlog from './pages/CreateBlog';
 import Navbar from './components/Navbar';
-import { BlogProvider } from './context/BlogContext';
+import { BlogProvider } from './context/BlogContext.jsx';
 
 function App() {
   return (

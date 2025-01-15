@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { BlogContext } from '../context/BlogContext';
+import { BlogContext } from '../context/BlogContext.jsx';
 
 function BlogDetails() {
   const { blogs } = useContext(BlogContext);
