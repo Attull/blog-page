@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { BlogContext } from '../context/BlogContext';
 
 function CreateBlog() {
+  const { addBlog } = useContext(BlogContext);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ title, content, tags });
-    // Handle blog creation logic
+    const newBlog = {
+      id: Date.now(),
+      title,
+      content,
+      tags: tags.split(',').map((tag) => tag.trim()),
+    };
+    addBlog(newBlog);
+    navigate('/');
   };
 
   return (

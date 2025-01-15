@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { BlogContext } from '../context/BlogContext';
 
 function Home() {
+  const { blogs } = useContext(BlogContext);
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
+
+  const filteredBlogs = blogs.filter(
+    (blog) =>
+      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   return (
     <div>
@@ -17,7 +26,13 @@ function Home() {
         value={searchTerm}
         onChange={handleSearch}
       />
-      {/* Render blogs with search and filter functionality */}
+      <div className="list-group">
+        {filteredBlogs.map((blog) => (
+          <Link key={blog.id} to={`/blog/${blog.id}`} className="list-group-item list-group-item-action">
+            {blog.title}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
